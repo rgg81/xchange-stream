@@ -53,10 +53,10 @@ public class BitmexStreamingExchange extends BitmexExchange implements Streaming
         return spec;
     }
 
-    @Override
-    public StreamingMarketDataService getStreamingMarketDataService() {
+    public BitmexStreamingMarketDataService getStreamingMarketDataService() {
         return streamingMarketDataService;
     }
+
 
     @Override
     public boolean isAlive() {

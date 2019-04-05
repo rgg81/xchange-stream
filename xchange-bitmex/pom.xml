@@ -7,7 +7,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>xchange-bitmex</artifactId>
+    <artifactId>xchange-bitmex-custom</artifactId>
 
     <dependencies>
         <dependency>
@@ -21,9 +21,9 @@
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.knowm.xchange</groupId>
+            <groupId>org.knowm.xchange.roberto</groupId>
             <artifactId>xchange-bitmex</artifactId>
-            <version>${xchange.version}</version>
+            <version>4.3.17-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>

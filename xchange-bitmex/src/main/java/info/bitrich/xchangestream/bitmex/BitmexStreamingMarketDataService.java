@@ -1,9 +1,6 @@
 package info.bitrich.xchangestream.bitmex;
 
-import info.bitrich.xchangestream.bitmex.dto.BitmexLimitOrder;
-import info.bitrich.xchangestream.bitmex.dto.BitmexOrderbook;
-import info.bitrich.xchangestream.bitmex.dto.BitmexTicker;
-import info.bitrich.xchangestream.bitmex.dto.BitmexTrade;
+import info.bitrich.xchangestream.bitmex.dto.*;
 import info.bitrich.xchangestream.core.StreamingMarketDataService;
 import io.reactivex.Observable;
 import org.knowm.xchange.currency.CurrencyPair;
@@ -89,4 +86,20 @@ public class BitmexStreamingMarketDataService implements StreamingMarketDataServ
             return trades;
         });
     }
+
+
+    public Observable<BitmexKline> getKline(String instrumentId, Object... args) {
+        String channelName = String.format("tradeBin1m:%s", instrumentId);
+
+        return streamingService.subscribeBitmexChannel(channelName).flatMapIterable(s -> {
+            BitmexKline[] bitmexTrades = s.toBitmexKline();
+            List<BitmexKline> trades = new ArrayList<>(bitmexTrades.length);
+            for (BitmexKline bitmexTrade : bitmexTrades) {
+                trades.add(bitmexTrade);
+            }
+            return trades;
+        });
+    }
+
+
 }

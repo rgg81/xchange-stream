@@ -54,6 +54,20 @@ public class BitmexWebSocketTransaction {
         return bitmexTicker;
     }
 
+    public BitmexKline[] toBitmexKline() {
+        BitmexKline[] bitmexKlines = new BitmexKline[data.size()];
+        for (int i = 0; i < data.size(); i++) {
+            JsonNode jsonTrade = data.get(i);
+            try {
+                bitmexKlines[i] = mapper.readValue(jsonTrade.toString(), BitmexKline.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return bitmexKlines;
+    }
+
     public BitmexTrade[] toBitmexTrades() {
         BitmexTrade[] trades = new BitmexTrade[data.size()];
         for (int i = 0; i < data.size(); i++) {
